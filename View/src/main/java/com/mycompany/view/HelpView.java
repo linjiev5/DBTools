@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import utils.GetPath;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,15 +23,18 @@ public class HelpView extends javax.swing.JFrame {
 
     /**
      * Creates new form HelpView
+     *
+     * @throws java.io.IOException
      */
-    public HelpView() {
+    public HelpView() throws IOException {
         initComponents();
         showText();
         this.setLocationRelativeTo(null); // 画面を中心にする
     }
 
-    private void showText() {
-        try (FileInputStream fis = new FileInputStream("C:\\Users\\user\\Documents\\NetBeansProjects\\mavenproject1\\DBTools\\View\\src\\main\\resources\\help.text");
+    private void showText() throws IOException {
+        String courseFile = GetPath.getProjectPath();
+        try (FileInputStream fis = new FileInputStream(courseFile + "\\src\\main\\resources\\help.text");
                 InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
                 BufferedReader reader = new BufferedReader(isr)) {
             DefaultListModel d = new DefaultListModel();
@@ -128,7 +134,11 @@ public class HelpView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HelpView().setVisible(true);
+                try {
+                    new HelpView().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(HelpView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

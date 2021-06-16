@@ -32,7 +32,8 @@ public class VelocityModel {
             VelocityContext context = new VelocityContext();
             context.put("hello", "Hello World!");
             StringWriter w = new StringWriter();
-            Template t = ve.getTemplate("../../../../../../../../View/src/main/resources/templete.vm");
+
+            Template t = ve.getTemplate("templete.vm", "UTF-8");
             t.merge(context, w);
             System.out.println("template:" + w);
         } catch (Exception e) {
@@ -46,7 +47,7 @@ public class VelocityModel {
             VelocityContext context = new VelocityContext();
             context.put("hello", "Hello World!");
             StringWriter w = new StringWriter();
-            Template t = Velocity.getTemplate("../../../../../../../../View/src/main/resources/templete.vm");
+            Template t = Velocity.getTemplate("templete.vm", "UTF-8");
             t.merge(context, w);
             System.out.println("template:" + w);
         } catch (Exception e) {
@@ -58,6 +59,7 @@ public class VelocityModel {
         Properties prop = new Properties();
         prop.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
         prop.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        System.out.println(ClasspathResourceLoader.class.getName());
         return prop;
     }
 }
