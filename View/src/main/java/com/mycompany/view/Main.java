@@ -35,6 +35,7 @@ public class Main extends javax.swing.JFrame {
         showDataBaseName = new javax.swing.JPanel();
         dataBaseNameLabel = new javax.swing.JLabel();
         editDataBaseInfo = new javax.swing.JButton();
+        dbName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -85,6 +86,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        dbName.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout showDataBaseNameLayout = new javax.swing.GroupLayout(showDataBaseName);
         showDataBaseName.setLayout(showDataBaseNameLayout);
         showDataBaseNameLayout.setHorizontalGroup(
@@ -93,12 +96,19 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(editDataBaseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dataBaseNameLabel)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dbName, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .addContainerGap())
         );
         showDataBaseNameLayout.setVerticalGroup(
             showDataBaseNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dataBaseNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(editDataBaseInfo)
+            .addGroup(showDataBaseNameLayout.createSequentialGroup()
+                .addGroup(showDataBaseNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(showDataBaseNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(dataBaseNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dbName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editDataBaseInfo))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel1.setText("jLabel1");
@@ -358,7 +368,7 @@ public class Main extends javax.swing.JFrame {
 
         DataBaseInfo dbi = new DataBaseInfo();
         dbi.setVisible(true);
-
+        this.dispose();
     }//GEN-LAST:event_editDataBaseInfoActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -404,6 +414,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> dataBaseName;
     private javax.swing.JLabel dataBaseNameLabel;
+    public javax.swing.JLabel dbName;
     private javax.swing.JButton editDataBaseInfo;
     private javax.swing.JButton generateAllCode;
     private javax.swing.JButton generateEntity;
@@ -437,7 +448,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel projectPathStatus;
     private javax.swing.JList<String> selectedTable;
     private javax.swing.JPanel showDataBaseName;
-    private javax.swing.JLabel showMessage;
+    public javax.swing.JLabel showMessage;
     private javax.swing.JList<String> tableList;
     // End of variables declaration//GEN-END:variables
 }

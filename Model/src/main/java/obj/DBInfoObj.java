@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DBInfo {
+public class DBInfoObj {
 
-    private String url;
+    private String dBType;
+    private String dbName;
     private String port;
     private String password;
-    private String pathAdress;
-    private String importPath;
+    private String user;
 }

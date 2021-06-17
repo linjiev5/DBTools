@@ -5,7 +5,10 @@ package com.mycompany.view;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.mycompany.model.velocity.service.DbInfo;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import obj.DBInfoObj;
 
 /**
  *
@@ -20,6 +23,8 @@ public class DataBaseInfo extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null); // 画面を中心にする
         reFormatCombox();
+        showData();
+
     }
 
     /**
@@ -41,7 +46,6 @@ public class DataBaseInfo extends javax.swing.JFrame {
         save = new javax.swing.JToggleButton();
         close = new javax.swing.JButton();
         clear = new javax.swing.JButton();
-        messageLabel = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         dBType = new javax.swing.JComboBox<>();
 
@@ -55,14 +59,12 @@ public class DataBaseInfo extends javax.swing.JFrame {
 
         passwordLabel.setText("Password");
 
-        localhost.setText("5432");
         localhost.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 localhostKeyTyped(evt);
             }
         });
 
-        user.setText("postgres");
         user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userActionPerformed(evt);
@@ -90,7 +92,11 @@ public class DataBaseInfo extends javax.swing.JFrame {
             }
         });
 
-        password.setText("postgres");
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
 
         dBType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dBType.addActionListener(new java.awt.event.ActionListener() {
@@ -107,8 +113,7 @@ public class DataBaseInfo extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(clear)
                         .addGap(35, 35, 35)
                         .addComponent(close)
@@ -165,18 +170,12 @@ public class DataBaseInfo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 82, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clear, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                            .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clear, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         dBType.getAccessibleContext().setAccessibleDescription("");
@@ -189,15 +188,35 @@ public class DataBaseInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-
-        //saveDateBaseInfo();
+        Main m = new Main();
+        if (checkInput()) {
+            DBInfoObj info = new DBInfoObj();
+            info.setDBType(dBType.getSelectedItem().toString());
+            info.setDbName(dataBaseName.getText());
+            info.setPassword(password.getText());
+            info.setPort(localhost.getText());
+            info.setUser(user.getText());
+            int result = DbInfo.setDBInfo(info);
+            switch (result) {
+                case 0:
+                    m.showMessage.setText("amazing");
+                    break;
+                case 1:
+                    m.showMessage.setText(dataBaseName.getText() + "を保存しました");
+                    break;
+                default:
+                    m.showMessage.setText("error");
+                    break;
+            }
+            m.dbName.setText(dataBaseName.getText());
+            this.dispose();
+            m.setVisible(true);
+        }
     }//GEN-LAST:event_saveActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Main mainView = new Main();
-        mainView.setVisible(true);
     }//GEN-LAST:event_closeActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
@@ -216,10 +235,26 @@ public class DataBaseInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_localhostKeyTyped
 
+    /**
+     * 初期化するときにファイルデータを取得する
+     */
+    private void showData() {
+        DBInfoObj dbInfo = DbInfo.getDBInfo();
+        ComboBoxModel<String> model = dBType.getModel();
+        model.setSelectedItem(dbInfo.getDBType());
+        localhost.setText(dbInfo.getPort());
+        user.setText(dbInfo.getUser());
+        password.setText(dbInfo.getPassword());
+        dataBaseName.setText(dbInfo.getDbName());
+    }
     private void dBTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dBTypeActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_dBTypeActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
 
     /**
      * 選択肢をリセットする
@@ -230,56 +265,20 @@ public class DataBaseInfo extends javax.swing.JFrame {
         dBType.addItem("mysql");
     }
 
+    /**
+     * 空欄保存する場合
+     *
+     * @return
+     */
     private boolean checkInput() {
         if (dataBaseName.getText().equals("") | localhost.getText().equals("") | user.getText().equals("") | password.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "空欄保存できません");
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
-    /*
-    private void saveDateBaseInfo() {
-        String localHost = localhost.getText();
-        String dBName = dataBaseName.getText();
-        String dataBaseType = dBType.getSelectedItem().toString();
-        String url = "jdbc:" + dataBaseType + "://localHost:" + localHost + "/" + dBName;
-        String userName = user.getText();
-        String pas = password.getText();
-        Connect con = new Connect();
-        con.setUrl(url);
-        con.setUser(userName);
-        con.setPas(pas);
-        try {
-            Connection c = con.getConnection();
-            if (c == null) {
-                messageLabel.setText("失敗しました");
-            } else {
-                // 空欄の場合にキャンセルする
-                if (checkInput()) {
-
-                } else {
-                    String sql = "insert into saved_place\n"
-                            + "values(nextval('saved_place_db_id_seq'),'" + dBName + "','" + dataBaseType + "','" + localHost + "','" + userName + "','" + pas + "');";
-                    // 保存先
-                    Connect conn = new Connect();
-                    conn.setUrl("jdbc:postgresql://localHost:5432/jpa");
-                    conn.setUser("postgres");
-                    conn.setPas("postgres");
-                    // 追加する
-                    conn.excuteSQLQuery(sql);
-
-                    Main m = new Main();
-                    m.setVisible(true);
-                    this.dispose();
-                }
-
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-    }*/
     /**
      * @param args the command line arguments
      */
@@ -330,7 +329,6 @@ public class DataBaseInfo extends javax.swing.JFrame {
     public javax.swing.JTextField dataBaseName;
     private javax.swing.JLabel hostLabel;
     public javax.swing.JTextField localhost;
-    private javax.swing.JLabel messageLabel;
     public javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JToggleButton save;

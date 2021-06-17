@@ -1,7 +1,16 @@
 package ${packagePath};
 
+#foreach ($imp in ${list})
+#if(imp.dataType == "Date")
 import java.sql.Date;
+#break
+#end
+#if(imp.dataType == "Timestamp")
 import java.sql.Timestamp;
+#break
+#end
+#end
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +27,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "${tableName}")
-public class CompanyInfo {
+public class ${className} {
+
 	@Id
-	private ${dataType} ${dataName};
+#foreach ($data in ${list})
+	private ${data.dataType} ${data.dataName};
+#end
 
 }

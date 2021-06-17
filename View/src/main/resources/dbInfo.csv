@@ -1,0 +1,2 @@
+DBType,PortNumber,DBName,User,Password
+postgresql,5432,recrui,postgres,postgres
