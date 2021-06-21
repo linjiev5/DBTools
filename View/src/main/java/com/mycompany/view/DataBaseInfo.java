@@ -196,7 +196,7 @@ public class DataBaseInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        Main m = new Main();
+        MainView m = new MainView();
         if (checkInput()) {
             DBInfoObj info = new DBInfoObj();
             info.setDBType(dBType.getSelectedItem().toString());
@@ -223,8 +223,9 @@ public class DataBaseInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_saveActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
-        // TODO add your handling code here:
         this.dispose();
+        MainView m = new MainView();
+        m.setVisible(true);
     }//GEN-LAST:event_closeActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
@@ -265,7 +266,7 @@ public class DataBaseInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void save1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_save1ActionPerformed
 
     /**

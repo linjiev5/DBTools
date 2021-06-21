@@ -5,10 +5,14 @@
  */
 package utils;
 
+import com.mycompany.model.velocity.service.DbInfo;
+import constant.SQLStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import obj.DBInfoObj;
+
 import obj.TableInfo;
 
 /**
@@ -57,6 +61,49 @@ public class DBUtils {
             e.printStackTrace();
             return null;
         }
+    }
 
+    /**
+     * 獲取表名
+     *
+     * @param c
+     * @return
+     */
+    public static ArrayList<String> getTableName(Connect c) {
+        ArrayList<String> tableNames = new ArrayList<>();
+        Connection connection = c.getConnection();
+        Statement st;
+        ResultSet rs;
+        try {
+            st = connection.createStatement();
+            // sql
+            String query = SQLStatement.GET_TABLE_NAME;
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String tableName = new String();
+                tableName = rs.getString("tablename");
+                tableNames.add(tableName);
+            }
+            return tableNames;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    /**
+     * 鏈接數據庫
+     *
+     * @return
+     */
+    public static Connect getConnectDB() {
+        Connect c = new Connect();
+        DBInfoObj dbInfo = DbInfo.getDBInfo();
+        c.setUrl("jdbc:" + dbInfo.getDBType() + "://localHost:" + dbInfo.getPort() + "/" + dbInfo.getDbName());
+        c.setUser(dbInfo.getUser());
+        c.setPas(dbInfo.getPassword());
+        return c;
     }
 }

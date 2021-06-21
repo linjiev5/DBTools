@@ -22,7 +22,7 @@ import utils.GetPath;
 public class DbInfo {
 
     /**
-     * ファイルを読み取る
+     * DBの保存情報ファイルを読み取る
      *
      * @return
      */
@@ -54,7 +54,7 @@ public class DbInfo {
     }
 
     /**
-     * 情報を更新する
+     * DB保存情報を更新する
      *
      * @param info
      * @return

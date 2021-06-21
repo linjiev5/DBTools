@@ -1,5 +1,7 @@
 
-import com.mycompany.view.Main;
+import com.mycompany.view.MainView;
+import java.util.ArrayList;
+import utils.DBUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +15,12 @@ import com.mycompany.view.Main;
 public class Start {
 
     public static void main(String... args) {
-        Main main = new Main();
+        ArrayList<String> tableNames = DBUtils.getTableName(DBUtils.getConnectDB());
+        for (String str : tableNames) {
+
+            System.out.println(str);
+        }
+        MainView main = new MainView();
         main.setVisible(true);
     }
 }

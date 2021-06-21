@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.model.velocity;
+package com.mycompany.view.controller;
 
 import java.io.StringWriter;
 import java.util.Properties;
@@ -30,10 +30,14 @@ public class VelocityModel {
             VelocityEngine ve = new VelocityEngine();
             ve.init(getDefaultProp());
             VelocityContext context = new VelocityContext();
+
+            context.put("list", "#");
+            context.put("hello", "Hello World!");
+            context.put("hello", "Hello World!");
             context.put("hello", "Hello World!");
             StringWriter w = new StringWriter();
-
             Template t = ve.getTemplate("templete.vm", "UTF-8");
+
             t.merge(context, w);
             System.out.println("template:" + w);
         } catch (Exception e) {

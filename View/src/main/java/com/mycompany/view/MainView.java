@@ -4,11 +4,13 @@ import com.mycompany.model.velocity.service.DbInfo;
 import com.mycompany.model.velocity.service.ProjectPath;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import obj.DBInfoObj;
+import utils.DBUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,17 +21,18 @@ import obj.DBInfoObj;
  *
  * @author user
  */
-public class Main extends javax.swing.JFrame {
+public class MainView extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    public MainView() {
         initComponents();
         this.setLocationRelativeTo(null); // 画面を中心にする
         // db名前を表示する
         dbName.setText(getDataBaseName());
         projectPath.setText(ProjectPath.getPath());
+        showTableName();
 
     }
 
@@ -128,15 +131,35 @@ public class Main extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jButton7.setText("-->");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jButton8.setText("<--");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jButton9.setText(">>>");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jButton10.setText("<<<");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("path選択");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -349,7 +372,7 @@ public class Main extends javax.swing.JFrame {
         try {
             hv = new HelpView();
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
         hv.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -396,6 +419,51 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_savePathActionPerformed
 
+    DefaultListModel model = new DefaultListModel();
+    DefaultListModel selectedModel = new DefaultListModel();
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if (tableList.getSelectedValue() != null) {
+            selectedModel.addElement(tableList.getSelectedValue());
+            selectedTable.setModel(selectedModel);
+            model.removeElement(tableList.getSelectedValue());
+        }
+        tableList.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if (selectedTable.getSelectedValue() != null) {
+            model.addElement(selectedTable.getSelectedValue());
+            tableList.setModel(model);
+            selectedModel.removeElement(selectedTable.getSelectedValue());
+        }
+        selectedTable.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        if (model != null) {
+            for (int i = 0, j = model.getSize(); i < j; i++) {
+                selectedModel.addElement(model.lastElement());
+                model.removeElement(model.lastElement());
+            }
+            tableList.setModel(model);
+            selectedTable.setModel(selectedModel);
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+
+        if (selectedModel != null) {
+            for (int i = 0, j = selectedModel.getSize(); i < j; i++) {
+                model.addElement(selectedModel.lastElement());
+                selectedModel.removeElement(selectedModel.lastElement());
+            }
+            tableList.setModel(model);
+            selectedTable.setModel(selectedModel);
+
+        }
+
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     /**
      * データベース名を読み取る
      *
@@ -406,10 +474,16 @@ public class Main extends javax.swing.JFrame {
         return dbInfo.getDbName();
     }
 
+    /**
+     * テーブルを表示する
+     */
     private void showTableName() {
-        DefaultListModel model = (DefaultListModel) tableList.getModel();
         model.clear();
-
+        ArrayList<String> tableNames = DBUtils.getTableName(DBUtils.getConnectDB());
+        tableNames.forEach((tableName) -> {
+            model.addElement(tableName);
+        });
+        tableList.setModel(model);
     }
 
     /**
@@ -430,27 +504,28 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class
+            java.util.logging.Logger.getLogger(MainView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class
+            java.util.logging.Logger.getLogger(MainView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class
+            java.util.logging.Logger.getLogger(MainView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class
+            java.util.logging.Logger.getLogger(MainView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new MainView().setVisible(true);
             }
         });
     }
