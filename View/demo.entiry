@@ -1,15 +1,5 @@
-package ${packagePath};
+package demo.entiry;
 
-#foreach ($imp in ${list})
-#if($imp.dataType == "Date")
-import java.sql.Date;
-#break
-#end
-#if($imp.dataType == "Timestamp")
-import java.sql.Timestamp;
-#break
-#end
-#end
 
 
 import javax.persistence.Entity;
@@ -26,13 +16,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "${tableName}")
-public class ${className} {
+@Table(name = "notice")
+public class Notice {
 
 	@Id
-#foreach ($data in ${list})
-	private ${data.dataType} ${data.dataName};
-#end
+	private integer ${data.dataName};
+	private character varying(128) ${data.dataName};
+	private text ${data.dataName};
+	private timestamp without time zone ${data.dataName};
 
 }
 

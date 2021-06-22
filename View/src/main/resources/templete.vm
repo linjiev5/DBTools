@@ -1,11 +1,11 @@
 package ${packagePath};
 
 #foreach ($imp in ${list})
-#if(imp.dataType == "Date")
+#if($imp.dataType == "Date")
 import java.sql.Date;
 #break
 #end
-#if(imp.dataType == "Timestamp")
+#if($imp.dataType == "Timestamp")
 import java.sql.Timestamp;
 #break
 #end

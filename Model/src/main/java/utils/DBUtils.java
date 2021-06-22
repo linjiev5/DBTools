@@ -24,13 +24,12 @@ public class DBUtils {
     /**
      * 根据表名找標題名、數據類型、數據註解
      *
-     * @param c
      * @param tableName
      * @return
      */
-    public static ArrayList<TableInfo> getTableInfo(Connect c, String tableName) {
+    public static ArrayList<TableInfo> getTableInfo(String tableName) {
         ArrayList<TableInfo> tableInfos = new ArrayList<>();
-        Connection connection = c.getConnection();
+        Connection connection = getConnectDB().getConnection();
         Statement st;
         ResultSet rs;
         try {
@@ -66,12 +65,11 @@ public class DBUtils {
     /**
      * 獲取表名
      *
-     * @param c
      * @return
      */
-    public static ArrayList<String> getTableName(Connect c) {
+    public static ArrayList<String> getTableName() {
         ArrayList<String> tableNames = new ArrayList<>();
-        Connection connection = c.getConnection();
+        Connection connection = getConnectDB().getConnection();
         Statement st;
         ResultSet rs;
         try {

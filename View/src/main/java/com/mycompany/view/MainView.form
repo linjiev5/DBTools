@@ -498,6 +498,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x3059;&#x3079;&#x3066;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateAllCodeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="importContent">
           <Properties>

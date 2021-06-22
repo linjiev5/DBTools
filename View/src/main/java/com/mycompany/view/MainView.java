@@ -2,6 +2,7 @@ package com.mycompany.view;
 
 import com.mycompany.model.velocity.service.DbInfo;
 import com.mycompany.model.velocity.service.ProjectPath;
+import com.mycompany.view.controller.VelocityModel;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -260,6 +261,11 @@ public class MainView extends javax.swing.JFrame {
         generateRepository.setText("Repository");
 
         generateAllCode.setText("すべて");
+        generateAllCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateAllCodeActionPerformed(evt);
+            }
+        });
 
         importContent.setText("imporｔ選択");
 
@@ -464,6 +470,11 @@ public class MainView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void generateAllCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateAllCodeActionPerformed
+        // TODO add your handling code here:
+        readData();
+    }//GEN-LAST:event_generateAllCodeActionPerformed
+
     /**
      * データベース名を読み取る
      *
@@ -479,11 +490,38 @@ public class MainView extends javax.swing.JFrame {
      */
     private void showTableName() {
         model.clear();
-        ArrayList<String> tableNames = DBUtils.getTableName(DBUtils.getConnectDB());
+        ArrayList<String> tableNames = DBUtils.getTableName();
         tableNames.forEach((tableName) -> {
             model.addElement(tableName);
         });
         tableList.setModel(model);
+    }
+
+    private ArrayList<String> getSelectedTableNames() {
+        ArrayList<String> selectTableNames = new ArrayList<>();
+        int count = selectedModel.getSize();
+        if (count > 0) {
+            for (int a = 0; a < count; a++) {
+                String str = new String();
+                str = selectedModel.get(a).toString();
+                selectTableNames.add(str);
+            }
+            return selectTableNames;
+        } else {
+            return null;
+        }
+    }
+
+    private void readData() {
+        VelocityModel main = new VelocityModel();
+        String path = projectPath.getText();
+        ArrayList<String> tableNames = getSelectedTableNames();
+        if (tableNames.size() > 0) {
+            tableNames.forEach((tableName) -> {
+                main.useVelocity(path, tableName);
+            });
+
+        }
     }
 
     /**
