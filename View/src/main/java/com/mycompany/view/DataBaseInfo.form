@@ -55,14 +55,12 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="save1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="save" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="clear" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="close" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,10 +99,9 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="close" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="clear" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="save" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="save1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="clear" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="close" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
@@ -206,14 +203,6 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="save1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x30c6;&#x30b9;&#x30c8;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save1ActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -483,6 +483,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Entity"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateEntityActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="generateObject">
           <Properties>

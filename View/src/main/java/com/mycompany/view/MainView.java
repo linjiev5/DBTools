@@ -2,7 +2,7 @@ package com.mycompany.view;
 
 import com.mycompany.model.velocity.service.DbInfo;
 import com.mycompany.model.velocity.service.ProjectPath;
-import com.mycompany.view.controller.VelocityModel;
+import com.mycompany.view.controller.VelocityEntityModel;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -255,6 +255,11 @@ public class MainView extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "操作", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("MS UI Gothic", 1, 14))); // NOI18N
 
         generateEntity.setText("Entity");
+        generateEntity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateEntityActionPerformed(evt);
+            }
+        });
 
         generateObject.setText("Object");
 
@@ -472,8 +477,13 @@ public class MainView extends javax.swing.JFrame {
 
     private void generateAllCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateAllCodeActionPerformed
         // TODO add your handling code here:
-        readData();
+
     }//GEN-LAST:event_generateAllCodeActionPerformed
+
+    private void generateEntityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateEntityActionPerformed
+
+        readData("entity");
+    }//GEN-LAST:event_generateEntityActionPerformed
 
     /**
      * データベース名を読み取る
@@ -512,13 +522,18 @@ public class MainView extends javax.swing.JFrame {
         }
     }
 
-    private void readData() {
-        VelocityModel main = new VelocityModel();
+    /**
+     * templeteからデータを読み取る
+     *
+     * @param type
+     */
+    private void readData(String type) {
+        VelocityEntityModel main = new VelocityEntityModel();
         String path = projectPath.getText();
         ArrayList<String> tableNames = getSelectedTableNames();
         if (tableNames.size() > 0) {
             tableNames.forEach((tableName) -> {
-                main.useVelocity(path, tableName);
+                main.useVelocity(path, type, tableName);
             });
 
         }

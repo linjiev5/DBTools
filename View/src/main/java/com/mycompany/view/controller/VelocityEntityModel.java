@@ -5,11 +5,14 @@
  */
 package com.mycompany.view.controller;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import obj.TableInfo;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -26,56 +29,39 @@ import utils.GetNameFormart;
  *
  * @author user
  */
-public class VelocityModel {
+public class VelocityEntityModel {
 
-    public static void main(String[] args) {
-        VelocityModel main = new VelocityModel();
-
-    }
-
-    /*
-    public void useVelocityEngine() {
-        try {
-            VelocityEngine ve = new VelocityEngine();
-            ve.init(getDefaultProp());
-            VelocityContext context = new VelocityContext();
-
-            context.put("list", "#");
-            context.put("hello", "Hello World!");
-            context.put("hello", "Hello World!");
-            context.put("hello", "Hello World!");
-            StringWriter w = new StringWriter();
-            Template t = ve.getTemplate("templete.vm", "UTF-8");
-
-            t.merge(context, w);
-            System.out.println("template:" + w);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-     */
-    public void useVelocity(String path, String tableName) {
+    public void useVelocity(String path, String type, String tableName) {
         try {
             Velocity.init(getDefaultProp());
             VelocityContext context = new VelocityContext();
-            context.put("packagePath", "Hello World!");
-            path = path.substring(path.lastIndexOf("java\\")).substring(5).replace("\\", ".");
-            context.put("packagePath", path);
+            String newPath = path.substring(path.lastIndexOf("java\\")).substring(5).replace("\\", ".");
+            context.put("packagePath", newPath);
             ArrayList<TableInfo> tableInfo = DBUtils.getTableInfo(tableName);
             context.put("list", tableInfo);
             tableName = GetNameFormart.getPropertity(tableName);
             context.put("tableName", tableName);
-            context.put("className", GetNameFormart.getClassName(tableName));
+            String className = GetNameFormart.getClassName(tableName);
+            context.put("className", className);
             StringWriter w = new StringWriter();
             Template t = Velocity.getTemplate("templete.vm", "UTF-8");
             t.merge(context, w);
+            File md = new File(path + "\\" + type);
+            File f = new File(path + "\\" + type + "\\" + className + ".java");
             try {
-                PrintWriter writer = new PrintWriter(path);
-                t.merge(context, writer);
-                writer.flush();
-                writer.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                if (!md.exists()) {
+                    md.mkdirs();
+                    FileWriter fw = new FileWriter(f, false);
+                    fw.write(w.toString());
+                    fw.close();
+                } else {
+                    FileWriter fw = new FileWriter(f, false);
+                    fw.write(w.toString());
+                    fw.close();
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(VelocityEntityModel.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("template:" + w);
         } catch (MethodInvocationException | ParseErrorException | ResourceNotFoundException e) {

@@ -31,7 +31,7 @@ public class ${className} {
 
 	@Id
 #foreach ($data in ${list})
-	private ${data.dataType} ${data.dataName};
+	private ${data.dataType} ${data.columnName};
 #end
 
 }

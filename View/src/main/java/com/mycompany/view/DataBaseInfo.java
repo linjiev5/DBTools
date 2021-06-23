@@ -48,7 +48,6 @@ public class DataBaseInfo extends javax.swing.JFrame {
         clear = new javax.swing.JButton();
         password = new javax.swing.JPasswordField();
         dBType = new javax.swing.JComboBox<>();
-        save1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,13 +105,6 @@ public class DataBaseInfo extends javax.swing.JFrame {
             }
         });
 
-        save1.setText("テスト");
-        save1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                save1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,14 +134,12 @@ public class DataBaseInfo extends javax.swing.JFrame {
                 .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(save)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(clear)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(close)
-                .addGap(20, 20, 20))
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,10 +169,9 @@ public class DataBaseInfo extends javax.swing.JFrame {
                         .addGap(1, 1, 1)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(save1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55))
         );
 
@@ -197,7 +186,7 @@ public class DataBaseInfo extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         MainView m = new MainView();
-        if (checkInput()) {
+        if (checkInput() && isConnect()) {
             DBInfoObj info = new DBInfoObj();
             info.setDBType(dBType.getSelectedItem().toString());
             info.setDbName(dataBaseName.getText());
@@ -265,10 +254,6 @@ public class DataBaseInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
 
-    private void save1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save1ActionPerformed
-
-    }//GEN-LAST:event_save1ActionPerformed
-
     /**
      * 選択肢をリセットする
      */
@@ -279,7 +264,27 @@ public class DataBaseInfo extends javax.swing.JFrame {
     }
 
     /**
-     * 空欄保存する場合
+     * 成功true,失敗false
+     *
+     * @return
+     */
+    private boolean isConnect() {
+        DBInfoObj info = new DBInfoObj();
+        info.setDBType(dBType.getSelectedItem().toString());
+        info.setDbName(dataBaseName.getText());
+        info.setPassword(password.getText());
+        info.setPort(localhost.getText());
+        info.setUser(user.getText());
+        int result = DbInfo.setDBInfo(info);
+        if (result == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 空欄チェック
      *
      * @return
      */
@@ -303,7 +308,6 @@ public class DataBaseInfo extends javax.swing.JFrame {
     public javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JToggleButton save;
-    private javax.swing.JToggleButton save1;
     public javax.swing.JTextField user;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables

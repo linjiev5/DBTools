@@ -18,7 +18,7 @@ public class GetNameFormart {
      * @return
      */
     public static String getPropertity(String colum) {
-        String pro = "";
+        String pro;
         int index = colum.indexOf("_");
         //判断アンダーバーがあるかどうか
         if (index < 0) {
@@ -50,7 +50,7 @@ public class GetNameFormart {
      * @return
      */
     public static String getClassName(String tableName) {
-        String newClassName = "";
+        String newClassName;
         int i = tableName.indexOf("_");
         if (i < 0) {
             //アンダーバーがない場合
@@ -58,9 +58,9 @@ public class GetNameFormart {
         } else {
             //アンダーバーがある場合
             String[] strs = tableName.split("_");
-            StringBuffer sb = new StringBuffer();
-            for (int m = 0; m < strs.length; m++) {
-                sb.append(strs[m].substring(0, 1).toUpperCase() + strs[m].substring(1));
+            StringBuilder sb = new StringBuilder();
+            for (String str : strs) {
+                sb.append(str.substring(0, 1).toUpperCase()).append(str.substring(1));
             }
             newClassName = sb.toString();
         }
