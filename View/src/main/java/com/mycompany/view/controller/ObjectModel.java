@@ -29,21 +29,20 @@ import utils.GetNameFormart;
  *
  * @author user
  */
-public class RepositotyModel {
+public class ObjectModel {
 
     public void useVelocity(String path, String type, String tableName) {
         try {
             Velocity.init(getDefaultProp());
             VelocityContext context = new VelocityContext();
             String newPath = path.substring(path.lastIndexOf("java\\")).substring(5).replace("\\", ".");
-            context.put("packagePath", newPath + ".repository");
+            context.put("packagePath", newPath + ".object");
             ArrayList<TableInfo> tableInfo = DBUtils.getTableInfo(tableName);
             context.put("list", tableInfo);
-            context.put("entiryName", GetNameFormart.getClassName(tableName));
-            String className = GetNameFormart.getClassName(tableName + "Repository");
+            String className = GetNameFormart.getClassName(tableName + "Object");
             context.put("className", className);
             StringWriter w = new StringWriter();
-            Template t = Velocity.getTemplate("repository.vm", "UTF-8");
+            Template t = Velocity.getTemplate("object.vm", "UTF-8");
             t.merge(context, w);
             File md = new File(path + "\\" + type);
             File f = new File(path + "\\" + type + "\\" + className + ".java");

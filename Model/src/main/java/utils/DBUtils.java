@@ -29,7 +29,7 @@ public class DBUtils {
      */
     public static ArrayList<TableInfo> getTableInfo(String tableName) {
         ArrayList<TableInfo> tableInfos = new ArrayList<>();
-        Connection connection = getConnectDB().getConnection();
+        Connection connection = getConnectDBInfo().getConnection();
         Statement st;
         ResultSet rs;
         try {
@@ -50,8 +50,8 @@ public class DBUtils {
 
             while (rs.next()) {
                 TableInfo ti = new TableInfo();
-                ti.setColumnName(rs.getString("name"));
-                ti.setDataType(rs.getString("type"));
+                ti.setColumnName(GetNameFormart.getPropertity(rs.getString("name")));
+                ti.setDataType(GetNameFormart.getDataType(rs.getString("type")));
                 ti.setComment("comment");
                 tableInfos.add(ti);
             }
@@ -69,7 +69,7 @@ public class DBUtils {
      */
     public static ArrayList<String> getTableName() {
         ArrayList<String> tableNames = new ArrayList<>();
-        Connection connection = getConnectDB().getConnection();
+        Connection connection = getConnectDBInfo().getConnection();
         Statement st;
         ResultSet rs;
         try {
@@ -96,12 +96,31 @@ public class DBUtils {
      *
      * @return
      */
-    public static Connect getConnectDB() {
+    public static Connect getConnectDBInfo() {
         Connect c = new Connect();
         DBInfoObj dbInfo = DbInfo.getDBInfo();
         c.setUrl("jdbc:" + dbInfo.getDBType() + "://localHost:" + dbInfo.getPort() + "/" + dbInfo.getDbName());
         c.setUser(dbInfo.getUser());
         c.setPas(dbInfo.getPassword());
         return c;
+    }
+
+    /**
+     * 判斷數據庫是否連接
+     *
+     * @return
+     */
+    public static boolean isConnectDB() {
+        Connect c = new Connect();
+        DBInfoObj dbInfo = DbInfo.getDBInfo();
+        c.setUrl("jdbc:" + dbInfo.getDBType() + "://localHost:" + dbInfo.getPort() + "/" + dbInfo.getDbName());
+        c.setUser(dbInfo.getUser());
+        c.setPas(dbInfo.getPassword());
+        Connection connection = c.getConnection();
+        if (connection != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

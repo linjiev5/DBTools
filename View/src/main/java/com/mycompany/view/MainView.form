@@ -96,15 +96,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                  <Component id="showDataBaseName" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+                          <Component id="showDataBaseName" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -144,6 +150,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="editDataBaseInfo" min="-2" pref="37" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButton2" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="dataBaseNameLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="dbName" pref="202" max="32767" attributes="0"/>
@@ -162,6 +170,11 @@
                       <Component id="editDataBaseInfo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jButton2" min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -195,6 +208,16 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
+        <Component class="javax.swing.JButton" name="jButton2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/reflesh.jpg"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -217,28 +240,25 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jScrollPane2" min="-2" pref="199" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jButton9" alignment="0" pref="79" max="32767" attributes="0"/>
-                                      <Component id="jButton8" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jButton7" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jButton10" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" min="-2" pref="203" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="projectPath" min="-2" pref="464" max="-2" attributes="0"/>
-                              </Group>
+                          <Component id="jScrollPane2" min="-2" pref="219" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jButton8" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
+                              <Component id="jButton7" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
+                              <Component id="jButton9" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
+                              <Component id="jButton10" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="jScrollPane3" min="-2" pref="245" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="70" max="32767" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="projectPath" min="-2" pref="464" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
@@ -247,7 +267,7 @@
                           <Component id="savePath" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -276,11 +296,8 @@
                           <Component id="jButton10" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace pref="20" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jScrollPane2" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
                       <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -443,19 +460,21 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="generateAllCode" alignment="0" max="32767" attributes="0"/>
-                      <Component id="generateEntity" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="generateObject" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="generateEntity" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="generateObject" min="-2" pref="67" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="generateRepository" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="importContent" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="generateAllCode" min="-2" pref="95" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -463,16 +482,12 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="generateAllCode" pref="38" max="32767" attributes="0"/>
-                      <Component id="importContent" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="generateAllCode" pref="46" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="generateRepository" alignment="1" pref="38" max="32767" attributes="0"/>
-                      <Component id="generateObject" alignment="1" max="32767" attributes="0"/>
                       <Component id="generateEntity" alignment="1" max="32767" attributes="0"/>
+                      <Component id="generateObject" alignment="1" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -491,24 +506,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Object"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateObjectActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="generateRepository">
           <Properties>
             <Property name="text" type="java.lang.String" value="Repository"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateRepositoryActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="generateAllCode">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x3059;&#x3079;&#x3066;"/>
+            <Property name="text" type="java.lang.String" value="&#x3059;&#x3079;&#x3066;&#x4f5c;&#x6210;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateAllCodeActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="importContent">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="impor&#xff54;&#x9078;&#x629e;"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

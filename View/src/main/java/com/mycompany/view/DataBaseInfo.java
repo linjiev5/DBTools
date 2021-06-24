@@ -186,7 +186,7 @@ public class DataBaseInfo extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         MainView m = new MainView();
-        if (checkInput() && isConnect()) {
+        if (checkInput()) {
             DBInfoObj info = new DBInfoObj();
             info.setDBType(dBType.getSelectedItem().toString());
             info.setDbName(dataBaseName.getText());

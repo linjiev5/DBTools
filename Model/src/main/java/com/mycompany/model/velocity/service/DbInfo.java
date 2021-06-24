@@ -73,11 +73,11 @@ public class DbInfo {
                 String str = info.getDBType() + "," + info.getPort() + "," + info.getDbName() + "," + info.getUser() + "," + info.getPassword();
                 bw.write(templete);
                 bw.write(str);
-                result = 1;
                 bw.flush();
                 bw.close();
                 fos.close();
                 osw.close();
+                result = 1;
             } catch (IOException e) {
                 e.printStackTrace();
             }

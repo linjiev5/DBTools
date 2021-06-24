@@ -5,16 +5,15 @@ package ${packagePath};
 import java.sql.Date;
 #break
 #end
+#end
+#foreach ($imp in ${list})
 #if($imp.dataType == "Timestamp")
 import java.sql.Timestamp;
 #break
 #end
 #end
 
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 

@@ -13,22 +13,17 @@ import java.sql.Timestamp;
 #end
 #end
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "${tableName}")
 public class ${className} {
 
-	@Id
 #foreach ($data in ${list})
 	private ${data.dataType} ${data.columnName};
 #end

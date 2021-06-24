@@ -36,7 +36,6 @@ public class Connect {
         try {
             con = DriverManager.getConnection(getUrl(), getUser(), getPas());
             return con;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

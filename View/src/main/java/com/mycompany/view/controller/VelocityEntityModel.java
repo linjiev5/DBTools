@@ -36,7 +36,7 @@ public class VelocityEntityModel {
             Velocity.init(getDefaultProp());
             VelocityContext context = new VelocityContext();
             String newPath = path.substring(path.lastIndexOf("java\\")).substring(5).replace("\\", ".");
-            context.put("packagePath", newPath);
+            context.put("packagePath", newPath + ".entity");
             ArrayList<TableInfo> tableInfo = DBUtils.getTableInfo(tableName);
             context.put("list", tableInfo);
             tableName = GetNameFormart.getPropertity(tableName);

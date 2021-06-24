@@ -1,0 +1,12 @@
+package ${packagePath};
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import jp.easyrecrui.entity.${entiryName};
+
+@Repository
+public interface ${className} extends JpaRepository<${entiryName}, Integer>{
+
+}
+

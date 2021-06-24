@@ -66,4 +66,23 @@ public class GetNameFormart {
         }
         return newClassName;
     }
+
+    public static String getDataType(String input) {
+        if (input.contains("character") || input.contains("varying") || input.contains("text")) {
+            return "String";
+        } else if (input.contains("boolean ") || input.contains("bit")) {
+            return "boolean";
+        } else if (input.contains("integer") || input.contains("int")) {
+            return "int";
+        } else if (input.contains("bigint") || input.contains("biginteger") || input.contains("long")) {
+            return "long";
+        } else if (input.contains("date") || input.contains("DATA")) {
+            return "Date";
+        } else if (input.contains("timestamp")) {
+            return "Timestamp";
+        } else {
+            return "UnsupportedType";
+        }
+    }
+
 }
