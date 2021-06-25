@@ -10,13 +10,13 @@ SpringBoot,Hibernate,JPAを用いたMavenプロジェクト専用ツールです
 
 ####　Main画面
 
-<img src="C:\Users\user\Documents\NetBeansProjects\mavenproject1\DBTools\img\mainView.png" alt="mainView" style="zoom:100%;" />
+<img src="img\mainView.png" alt="mainView" style="zoom:100%;" />
 
 #### DB情報編集
 
 DBアイコンを押してから、この画面が出ます
 
-<img src="C:\Users\user\Documents\NetBeansProjects\mavenproject1\DBTools\img\dbInfoEdit.png" alt="dbInfoEdit" style="zoom:120%;" />
+<img src="img\dbInfoEdit.png" alt="dbInfoEdit" style="zoom:120%;" />
 
 保存して、入力した項目をローカル保存し、Main画面に戻ります
 
@@ -24,11 +24,11 @@ DBアイコンを押してから、この画面が出ます
 
 Path選択ボタンを押して、プロジェクトのPathを選択する
 
-![fileChoose](C:\Users\user\Documents\NetBeansProjects\mavenproject1\DBTools\img\fileChoose.png)
+![fileChoose](img\fileChoose.png)
 
 Path保存ボタンを押したらPathをローカルに保存する
 
-![reflesh](C:\Users\user\Documents\NetBeansProjects\mavenproject1\DBTools\img\reflesh.jpg)このボタンを押してたらローカルデータをDBに接続するテストを行います。
+![reflesh](img\reflesh.jpg)このボタンを押してたらローカルデータをDBに接続するテストを行います。
 
 Message欄に結果を表示する
 
