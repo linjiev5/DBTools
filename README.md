@@ -24,11 +24,11 @@ DBアイコンを押してから、この画面が出ます
 
 Path選択ボタンを押して、プロジェクトのPathを選択する
 
-![fileChoose](img\fileChoose.png)
+<img src="img\fileChoose.png" alt="fileChoose" style="zoom:100%;" />
 
 Path保存ボタンを押したらPathをローカルに保存する
 
-![reflesh](img\reflesh.jpg)このボタンを押してたらローカルデータをDBに接続するテストを行います。
+<img src="img\reflesh.jpg" alt="reflesh" style="zoom:100%;" />このボタンを押してたらローカルデータをDBに接続するテストを行います。
 
 Message欄に結果を表示する
 
