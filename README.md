@@ -34,6 +34,16 @@ Message欄に結果を表示する
 
 操作欄にコード作成する。
 
+#### 作成したコード
+
+Entity層のコードの一覧
+
+<img src="img\showCode.png" alt="showCode" style="zoom:100%;" />
+
+開いてみたら
+
+<img src="img\javaCode.png" alt="javaCode" style="zoom:100%;" />
+
 ## 後ろ書き
 
 個人専用のツールですので、ご参考になれればと思います。
