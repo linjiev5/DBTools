@@ -52,7 +52,7 @@ public class DBUtils {
                 TableInfo ti = new TableInfo();
                 ti.setColumnName(GetNameFormart.getPropertity(rs.getString("name")));
                 ti.setDataType(GetNameFormart.getDataType(rs.getString("type")));
-                ti.setComment("comment");
+                ti.setComment(rs.getString("comment"));
                 tableInfos.add(ti);
             }
             return tableInfos;

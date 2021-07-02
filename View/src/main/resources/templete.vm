@@ -30,6 +30,7 @@ public class ${className} {
 
 	@Id
 #foreach ($data in ${list})
+	// ${data.comment}
 	private ${data.dataType} ${data.columnName};
 #end
 

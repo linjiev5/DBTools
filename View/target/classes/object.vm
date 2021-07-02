@@ -25,6 +25,7 @@ import lombok.Setter;
 public class ${className} {
 
 #foreach ($data in ${list})
+	// ${data.comment}
 	private ${data.dataType} ${data.columnName};
 #end
 

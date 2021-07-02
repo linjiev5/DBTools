@@ -39,7 +39,7 @@ public class RepositotyModel {
             context.put("packagePath", newPath + ".repository");
             ArrayList<TableInfo> tableInfo = DBUtils.getTableInfo(tableName);
             context.put("list", tableInfo);
-            context.put("entiryName", GetNameFormart.getClassName(tableName));
+            context.put("entityName", GetNameFormart.getClassName(tableName));
             String className = GetNameFormart.getClassName(tableName + "Repository");
             context.put("className", className);
             StringWriter w = new StringWriter();
