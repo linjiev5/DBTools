@@ -1,0 +1,28 @@
+package ${packagePath};
+#foreach ($imp in ${entities})
+#if($imp.dataType == "Date")
+
+import java.sql.Date;
+#break
+#end
+#end
+#foreach ($imp in ${entities})
+#if($imp.dataType == "Timestamp")
+import java.sql.Timestamp;
+
+#break
+#end
+#end
+#foreach ($imp in ${entities})
+import ${entityPath}.${imp.className};
+#end
+#foreach ($imp in ${objects})
+import ${objectPath}.${imp.className};
+#end
+
+public class EntityToObject {
+	/**
+	 * ${tableComment}
+	 * @param ${entityName}
+	 * @return
+	 */
