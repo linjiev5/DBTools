@@ -68,8 +68,10 @@ public class GetNameFormart {
     }
 
     public static String getDataType(String input) {
-        if (input.contains("character") || input.contains("varying") || input.contains("text")) {
+        if (input.contains("varying") || input.contains("text")) {
             return "String";
+        } else if (input.contains("character") || input.contains("char")) {
+            return "char";
         } else if (input.contains("boolean ") || input.contains("bit")) {
             return "boolean";
         } else if (input.contains("integer") || input.contains("int")) {
