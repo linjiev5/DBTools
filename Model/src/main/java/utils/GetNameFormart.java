@@ -44,6 +44,18 @@ public class GetNameFormart {
     }
 
     /**
+     * 頭文字を大文字にする
+     *
+     * @param column
+     * @return
+     */
+    public static String getFirstUpperCase(String column) {
+        // 頭文字を大文字にする
+        String newColumnName = column.substring(0, 1).toUpperCase() + column.substring(1);
+        return newColumnName;
+    }
+
+    /**
      * 生成类名
      *
      * @param tableName 表名

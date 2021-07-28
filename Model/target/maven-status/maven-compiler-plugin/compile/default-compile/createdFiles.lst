@@ -1,0 +1,6 @@
+com\mycompany\model\velocity\service\DbInfo.class
+com\mycompany\model\velocity\service\ProjectPath.class
+utils\IODeal.class
+constant\SQLStatement.class
+obj\DBInfoObj.class
+utils\Connect.class

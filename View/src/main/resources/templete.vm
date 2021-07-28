@@ -33,6 +33,6 @@ public class ${className} {
 	// ${data.comment}
 	private ${data.dataType} ${data.columnName};
 #end
-
+              
 }
 
